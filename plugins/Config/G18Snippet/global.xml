@@ -1,0 +1,864 @@
+<?xml version="1.0"?>
+<G18Snippet>
+	<snippet name="New UseCase Diagram" shortcut="pumluc">
+		<var name="mainActor" optional="1" label="main Actor"></var>
+		<var name="mainActorPseudo" optional="1" label="main Actor Pseudo"></var>
+		<description>A Simple puml UseCase</description>
+		<code><![CDATA[@startuml
+header
+<font color=red>Use Case:</font>
+[Ref] Enter Diagram Title
+endheader
+center footer MyRPG Use Case Diagram
+title Use Case \nTitle.
+
+skinparam handwritten true
+skinparam defaultFontColor #FFFFFF
+skinparam BackgroundColor black
+
+skinparam usecase {
+	BackgroundColor black
+	bordercolor white
+	ArrowColor LightGreen
+	BackgroundColor<< Main >> #0040A0
+	BackgroundColor<< Specif >> #A04000
+	BackgroundColor<< Web >> #40A040
+	BackgroundColor<< SOAP >> #A04040
+}
+skinparam actor {
+	BackgroundColor black
+	bordercolor Red
+	ArrowColor LightGreen
+}
+skinparam database {
+    BackgroundColor black
+	BackgroundColor << XML >> #800000
+	BackgroundColor << MySQL >> #008000
+    bordercolor white
+    ArrowColor LightGreen
+}
+skinparam package {
+	BackgroundColor black
+	bordercolor Red
+	bordercolor<<MyRPGEditorBase>> Green
+	ArrowColor LightGreen
+}
+
+:$mainActor$: as $mainActorPseudo$
+
+(Use case) as UC
+$mainActorPseudo$ --> UC : Description
+$end$
+@enduml
+]]></code>
+	</snippet>
+	<snippet name="Actor" shortcut="pumluc">
+		<var name="ActorName" optional="1" label="Actor full name"/>
+		<var name="ActorPseudo" optional="1" label="Actor pseudo"/>
+		<description>Define an actor</description>
+		<code><![CDATA[:$ActorName$: as $ActorPseudo$
+$end$]]></code>
+	</snippet>
+	
+	<snippet name="Use Case" shortcut="pumluc">
+		<var name="UseCase" optional="1" label="Use Case"/>
+		<var name="UCPseudo" optional="1" label="Pseudo"/>
+		<var name="UCSRC" optional="1" label="Pseudo Source"/>
+		<var name="Description" optional="1" label="Interaction"/>
+		<description>a Use Case</description>
+		<code><![CDATA[($UseCase$) as $UCPseudo$
+$UCSRC$ --> $UCPseudo$ : $Description$
+$end$]]></code>
+	</snippet>
+	<snippet name="DataBase" shortcut="pumluc">
+		<var name="dbname" optional="0" label="DataBase Name"/>
+		<var name="dbpseudo" optional="0" label="DataBase Pseudo"/>
+		<var name="ucpseudo" optional="0" label="Use Case Pseudo"/>
+		<var name="proto" optional="0" label="Prototype"/>
+		<var name="description" optional="1" label="Description"/>
+		<description>a DataBase</description>
+		<code><![CDATA[database "$dbname$" << $proto$ >> as $dbpseudo$
+$ucpseudo$ <.right.> $dbpseudo$ : $description$
+$end$]]></code>
+	</snippet>
+
+	<snippet name="New Sequence Diagram" shortcut="pumlseq">
+		<description>a Use Case</description>
+		<code><![CDATA[@startuml
+header
+<font color=red>Sequence :</font>
+[Ref] Enter Diagram Title
+endheader
+center footer MyRPG Sequence Diagram
+title Sequence \nTitle.
+
+== INIT ==
+autonumber 10 10 "<b>(ACCINI0)"
+$end$
+@enduml]]></code>
+	</snippet>
+	<snippet name="Message" shortcut="pumlseq">
+		<description>a Message</description>
+		<code><![CDATA[$msgSrc$ -> $msgDest$: $description$
+$end$]]></code>
+	</snippet>
+	<snippet name="Message answer" shortcut="pumlseq">
+		<description>an answer</description>
+		<code><![CDATA[$msgSrc$ --> $msgDest$: $description$
+$end$]]></code>
+	</snippet>
+	<snippet name="Message Exchange" shortcut="pumlseq">
+		<description>an exchange</description>
+		<code><![CDATA[$msgSrc$ -> $msgDest$: $msgdesc$
+$msgDest$ --> $msgSrc$: $desc2$
+$end$]]></code>
+	</snippet>
+	<snippet name="Message Exchange with Application Error Control" shortcut="pumlseq">
+		<description>an exchange with application control</description>
+		<code><![CDATA[$msgSrc$ -> $msgDest$: $msgdesc$
+alt $sucase$ 
+	$msgDest$ --> $msgSrc$: $desc2$
+else Application Error 1
+	$msgDest$ -->x $msgSrc: $descError$
+end
+$end$]]></code>
+	</snippet>
+	<snippet name="Message Exchange with Application and Transport Error Control" shortcut="pumlseq">
+		<description>an exchange with application and transport control</description>
+		<code><![CDATA[$msgSrc$ -> $msgDest$: $msgdesc$
+alt $sucase$ 
+	$msgDest$ --> $msgSrc$: $desc2$
+else Application Error 1
+	$msgDest$ -->x $msgSrc: $descError$
+else Transport Protocol Error (OSI)
+	$msgDest$ -->x $msgSrc: $descError2$
+end
+$end$]]></code>
+	</snippet>
+	<snippet name="Loop" shortcut="pumlseq">
+		<description>a loop</description>
+		<code><![CDATA[loop #FF4000 on demande la clé 3 fois max avant de quitter
+	$end$
+end
+]]></code>
+	</snippet>
+	<snippet name="Retard" shortcut="pumlseq">
+		<description>un retard</description>
+		<code><![CDATA[... $end$ minutes later ...]]></code>
+	</snippet>
+	<snippet name="Separation verticale" shortcut="pumlseq">
+		<description>un beautiy</description>
+		<code><![CDATA[|||
+$end$]]></code>
+	</snippet>
+	<snippet name="Activate" shortcut="pumlseq">
+		<description>Activate an actor</description>
+		<code><![CDATA[activate $pseudo$
+$end$]]></code>
+	</snippet>
+	<snippet name="DeActivate" shortcut="pumlseq">
+		<description>DeActivate an actor</description>
+		<code><![CDATA[deactivate $pseudo$
+$end$]]></code>
+	</snippet>
+	
+	<snippet name="New Class Diagram" shortcut="pumlclass">
+		<description>New Class Diagram</description>
+		<code><![CDATA[@startuml
+allowmixing
+header
+<font color=red>Class definitions:</font>
+[Ref] Enter Diagram Title
+endheader
+center footer MyRPG Class Diagram
+title $title$
+
+skinparam defaultFontColor #FFFFFF
+skinparam BackgroundColor black
+skinparam class{
+	BackgroundColor black
+	bordercolor white
+	ArrowColor LightGreen
+}
+skinparam Component{
+	BackgroundColor black
+	bordercolor white
+	ArrowColor LightGreen
+}
+skinparam database{
+	BackgroundColor black
+	bordercolor white
+	ArrowColor LightGreen
+}
+$end$
+@enduml]]></code>
+	</snippet>
+	<snippet name="New class with stereotype" shortcut="pumlclass">
+		<var name="class" optional="1" label="Class Name"/>
+		<var name="stereotype" optional="1" label="Stereotype"/>
+		<description>new class</description>
+		<code><![CDATA[class $class$ << $stereotype$ >> {
+	.. package private attributes ..
+	.. private attributes ..
+	$end$
+	.. protected attributes ..
+	.. public attributes ..
+	-- serialized attributes ---
+	==
+	.. package private methods ..
+	.. getters ..
+	.. setters ..
+	.. private methods ..
+	.. protected methods ..
+	.. public methods ..
+}]]></code>
+	</snippet>
+	<snippet name="New class" shortcut="pumlclass">
+		<description>new class</description>
+		<code><![CDATA[class $class$ {
+	.. package private attributes ..
+	.. private attributes ..
+	$end$
+	.. protected attributes ..
+	.. public attributes ..
+	-- serialized attributes ---
+	==
+	.. package private methods ..
+	.. getters ..
+	.. setters ..
+	.. private methods ..
+	.. protected methods ..
+	.. public methods ..
+}]]></code>
+	</snippet>
+	<snippet name="New class with template and letter configuration" shortcut="pumlclass">
+		<var name="class" optional="1" label="Class Name"/>
+		<var name="stereotype" optional="1" label="Stereotype"/>
+		<var name="letter" optional="1" label="Letter"/>
+		<var name="color" optional="1" label="Color #"/>
+		<description>new class</description>
+		<code><![CDATA[class $class$ << ($letter$,#$color$) $stereotype$ >> {
+	.. package private attributes ..
+	.. private attributes ..
+	$end$
+	.. protected attributes ..
+	.. public attributes ..
+	-- serialized attributes ---
+	==
+	.. package private methods ..
+	.. getters ..
+	.. setters ..
+	.. private methods ..
+	.. protected methods ..
+	.. public methods ..
+}]]></code>
+	</snippet>
+
+	<snippet name="New abstract class with template" shortcut="pumlclass">
+		<description>new class</description>
+		<code><![CDATA[abstract class $class$ << $template$ >> {
+	.. package private attributes ..
+	.. private attributes ..
+	$end$
+	.. protected attributes ..
+	.. public attributes ..
+	-- serialized attributes ---
+	==
+	.. package private methods ..
+	.. getters ..
+	.. setters ..
+	.. private methods ..
+	.. protected methods ..
+	.. public methods ..
+}]]></code>
+	</snippet>
+	<snippet name="New abstract class" shortcut="pumlclass">
+		<description>new class</description>
+		<code><![CDATA[abstract class $class$ {
+	.. package private attributes ..
+	.. private attributes ..
+	$end$
+	.. protected attributes ..
+	.. public attributes ..
+	-- serialized attributes ---
+	==
+	.. package private methods ..
+	.. getters ..
+	.. setters ..
+	.. private methods ..
+	.. protected methods ..
+	.. public methods ..
+}]]></code>
+	</snippet>
+	<snippet name="New abstract class with template and letter configuration" shortcut="pumlclass">
+		<description>new class</description>
+		<code><![CDATA[abstract class $class$ << ($letter$,#$color$) $template$ >> {
+	.. package private attributes ..
+	.. private attributes ..
+	$end$
+	.. protected attributes ..
+	.. public attributes ..
+	-- serialized attributes ---
+	==
+	.. package private methods ..
+	.. getters ..
+	.. setters ..
+	.. private methods ..
+	.. protected methods ..
+	.. public methods ..
+}]]></code>
+	</snippet>
+	<snippet name="New Interface with template" shortcut="pumlclass">
+		<description>new class</description>
+		<code><![CDATA[interface $class$ << $template$ >> {
+	.. package private attributes ..
+	.. private attributes ..
+	$end$
+	.. protected attributes ..
+	.. public attributes ..
+	==
+	.. package private methods ..
+	.. getters ..
+	.. setters ..
+	.. private methods ..
+	.. protected methods ..
+	.. public methods ..
+}]]></code>
+	</snippet>
+	<snippet name="New interface" shortcut="pumlclass">
+		<description>new class</description>
+		<code><![CDATA[interface $class$ {
+	.. package private attributes ..
+	.. private attributes ..
+	$end$
+	.. protected attributes ..
+	.. public attributes ..
+	==
+	.. package private methods ..
+	.. getters ..
+	.. setters ..
+	.. private methods ..
+	.. protected methods ..
+	.. public methods ..
+}]]></code>
+	</snippet>
+	<snippet name="New enum" shortcut="pumlclass">
+		<description>new class</description>
+		<code><![CDATA[enum $class$ {
+	$end$
+}]]></code>
+	</snippet>
+	<snippet name="New annotation" shortcut="pumlclass">
+		<description>new class</description>
+		<code><![CDATA[annotation $class$ {
+	$end$
+}]]></code>
+	</snippet>
+	<snippet name="Attribute (Package Private)" shortcut="pumlclass">
+		<description>Attribute (Package Private)</description>
+		<code><![CDATA[~ $end$]]></code>
+	</snippet>
+	<snippet name="Attribute (Private)" shortcut="pumlclass">
+		<description>Attribute (Package Private)</description>
+		<code><![CDATA[- $end$]]></code>
+	</snippet>
+	<snippet name="Attribute (Protected)" shortcut="pumlclass">
+		<description>Attribute (Package Private)</description>
+		<code><![CDATA[# $end$]]></code>
+	</snippet>
+	<snippet name="Attribute (Public)" shortcut="pumlclass">
+		<description>Attribute (Package Private)</description>
+		<code><![CDATA[+ $end$]]></code>
+	</snippet>
+	<snippet name="Method (Package Private)" shortcut="pumlclass">
+		<description>Method (Package Private)</description>
+		<code><![CDATA[~ $end$()]]></code>
+	</snippet>
+	<snippet name="Method (Private)" shortcut="pumlclass">
+		<description>Method (Private)</description>
+		<code><![CDATA[- $end$()]]></code>
+	</snippet>
+	<snippet name="Method (Protected)" shortcut="pumlclass">
+		<description>Method (Protected)</description>
+		<code><![CDATA[# $end$()]]></code>
+	</snippet>
+	<snippet name="Method (Public)" shortcut="pumlclass">
+		<description>Method (Public)</description>
+		<code><![CDATA[+ $end$()]]></code>
+	</snippet>
+	<snippet name="Method (Public Getter)" shortcut="pumlclass">
+		<description>Method Getter</description>
+		<code><![CDATA[+ Get$end$()]]></code>
+	</snippet>
+	<snippet name="Method (Public Setter)" shortcut="pumlclass">
+		<description>Method Setter</description>
+		<code><![CDATA[+ Get$end$()]]></code>
+	</snippet>
+	<snippet name="Extends" shortcut="pumlclass">
+		<description>Extends</description>
+		<code><![CDATA[$class1$ --|> $class2$
+$end$]]></code>
+	</snippet>
+	<snippet name="Composition" shortcut="pumlclass">
+		<description>Composition</description>
+		<code><![CDATA[$class1$ *-- $class2$
+$end$]]></code>
+	</snippet>
+	<snippet name="Composition with cardinals" shortcut="pumlclass">
+		<description>Composition with cardinals</description>
+		<code><![CDATA[$class1$ "1" *-- "$card$" $class2$
+$end$]]></code>
+	</snippet>
+	<snippet name="Aggregation" shortcut="pumlclass">
+		<description>Aggregation</description>
+		<code><![CDATA[$class1$ o-- $class2$
+$end$]]></code>
+	</snippet>
+	<snippet name="Aggregation with cardinals" shortcut="pumlclass">
+		<description>Composition with cardinals</description>
+		<code><![CDATA[$class1$ "1" o-- "$card$" $class2$
+$end$]]></code>
+	</snippet>
+	<snippet name="Composition Methods" shortcut="pumlclass">
+		<description>Composition Methods</description>
+		<code><![CDATA[+ Get$class$(index)
++ Get$class$Cnt()
++ Get$class$ByName()
+$end$]]></code>
+	</snippet>
+	<snippet name="Aggregation Methods" shortcut="pumlclass">
+		<description>Composition Methods</description>
+		<code><![CDATA[+ Get$class$(index)
++ Get$class$Cnt()
++ Get$class$ByName()
+$end$]]></code>
+	</snippet>
+
+	<snippet name="Actor " shortcut="pumldep">
+		<description>Actor</description>
+		<code><![CDATA[actor "$actorName$" as $pseudo$
+$end$]]></code>
+	</snippet>
+	<snippet name="agent " shortcut="pumldep">
+		<description>agent </description>
+		<code><![CDATA[agent $pseudo$ [
+	$label$
+]$end$]]></code>
+	</snippet>
+	<snippet name="artifact" shortcut="pumldep">
+		<description>Agent</description>
+		<code><![CDATA[artifact $pseudo$ [
+	$label$
+]$end$]]></code>
+	</snippet>
+	<snippet name="card" shortcut="pumldep">
+		<description>card</description>
+		<code><![CDATA[card $pseudo$ [
+	$label$
+]$end$]]></code>
+	</snippet>
+	<snippet name="component" shortcut="pumldep">
+		<description>component</description>
+		<code><![CDATA[component $pseudo$ [
+	$label$
+]$end$]]></code>
+	</snippet>
+	<snippet name="cloud" shortcut="pumldep">
+		<description>cloud</description>
+		<code><![CDATA[cloud "$label$" as $pseudo$ {
+	$end$	
+}]]></code>
+	</snippet>
+	<snippet name="database" shortcut="pumldep">
+		<description>database</description>
+		<code><![CDATA[cloud "$label$" as $pseudo$ {
+	$end$	
+}]]></code>
+	</snippet>
+	<snippet name="file" shortcut="pumldep">
+		<description>file</description>
+		<code><![CDATA[file "$label$" as $pseudo$ {
+	$end$	
+}]]></code>
+	</snippet>
+	<snippet name="folder" shortcut="pumldep">
+		<description>folder</description>
+		<code><![CDATA[folder "$label$" as $pseudo$ {
+	$end$	
+}]]></code>
+	</snippet>
+	<snippet name="frame" shortcut="pumldep">
+		<description>frame</description>
+		<code><![CDATA[frame "$label$" as $pseudo$ {
+	$end$	
+}]]></code>
+	</snippet>
+	<snippet name="node" shortcut="pumldep">
+		<description>node</description>
+		<code><![CDATA[node "$label$" as $pseudo$ {
+	$end$	
+}]]></code>
+	</snippet>
+	<snippet name="package" shortcut="pumldep">
+		<description>package</description>
+		<code><![CDATA[package "$label$" as $pseudo$ {
+	$end$	
+}]]></code>
+	</snippet>
+	<snippet name="rectangle" shortcut="pumldep">
+		<description>rectangle</description>
+		<code><![CDATA[rectangle "$label$" as $pseudo$ {
+	$end$	
+}]]></code>
+	</snippet>
+	<snippet name="storage" shortcut="pumldep">
+		<description>storage</description>
+		<code><![CDATA[storage $pseudo$ [
+	$label$
+]
+$end$]]></code>
+	</snippet>
+	<snippet name="use case" shortcut="pumldep">
+		<description>use case</description>
+		<code><![CDATA[usecase $pseudo$ [
+	$label$
+]
+$end$]]></code>
+	</snippet>
+	<snippet name="boundary" shortcut="pumldep">
+		<description>boundary</description>
+		<code><![CDATA[boundary "$Name$" as $pseudo$
+$end$]]></code>
+	</snippet>
+	<snippet name="control" shortcut="pumldep">
+		<description>control</description>
+		<code><![CDATA[control "$Name$" as $pseudo$
+$end$]]></code>
+	</snippet>
+	<snippet name="entity" shortcut="pumldep">
+		<description>entity</description>
+		<code><![CDATA[entity "$Name$" as $pseudo$
+$end$]]></code>
+	</snippet>
+	<snippet name="interface" shortcut="pumldep">
+		<description>interface</description>
+		<code><![CDATA[interface "$Name$" as $pseudo$
+$end$]]></code>
+	</snippet>
+
+	<snippet name="if" shortcut="pumlact">
+		<description>if</description>
+		<code><![CDATA[if ($end$) then (true)
+	
+else (false)
+	
+endif]]></code>
+	</snippet>
+	<snippet name="if ... elseif ..." shortcut="pumlact">
+		<description>if ... elseif</description>
+		<code><![CDATA[if ($end$) then (true)
+	
+elseif () then (true)
+
+else (nothing)
+	
+endif]]></code>
+	</snippet>
+	<snippet name="repeat" shortcut="pumlact">
+		<description>repeat</description>
+		<code><![CDATA[repeat
+$end$
+repeat while ()
+]]></code>
+	</snippet>
+	<snippet name="while" shortcut="pumlact">
+		<description>while</description>
+		<code><![CDATA[while ($end$) is (not empty)
+	
+endwhile (empty)
+]]></code>
+	</snippet>
+	<snippet name="fork" shortcut="pumlact">
+		<description>fork</description>
+		<code><![CDATA[fork
+	$end$
+fork again
+	
+endfork]]></code>
+	</snippet>
+	<snippet name="start" shortcut="pumlact">
+		<description>start</description>
+		<code><![CDATA[start
+$end$]]></code>
+	</snippet>
+	<snippet name="stop" shortcut="pumlact">
+		<description>stop</description>
+		<code><![CDATA[stop
+$end$]]></code>
+	</snippet>
+	<snippet name="end" shortcut="pumlact">
+		<description>end</description>
+		<code><![CDATA[end
+$end$]]></code>
+	</snippet>
+	<snippet name="detach" shortcut="pumlact">
+		<description>detach</description>
+		<code><![CDATA[detach
+$end$]]></code>
+	</snippet>
+	<snippet name="connector (goto)" shortcut="pumlact">
+		<description>}</description>
+		<code><![CDATA[($end$)
+detach
+]]></code>
+	</snippet>
+	<snippet name="connector (entry)" shortcut="pumlact">
+		<description>}</description>
+		<code><![CDATA[($end$)
+]]></code>
+	</snippet>
+	<snippet name="partition" shortcut="pumlact">
+		<description>partition</description>
+		<code><![CDATA[partition "$label$" as $pseudo$ {
+	$end$	
+}]]></code>
+	</snippet>
+
+	<snippet name=";" shortcut="pumlact2">
+		<description>;</description>
+		<code><![CDATA[:$end$;]]></code>
+	</snippet>
+	<snippet name="|" shortcut="pumlact2">
+		<description>|</description>
+		<code><![CDATA[:$end$|]]></code>
+	</snippet>
+	<snippet name=">" shortcut="pumlact2">
+		<description>&gt;</description>
+		<code><![CDATA[:$end$>]]></code>
+	</snippet>
+	<snippet name="<" shortcut="pumlact2">
+		<description>&lt;</description>
+		<code><![CDATA[:$end$<]]></code>
+	</snippet>
+	<snippet name="/" shortcut="pumlact2">
+		<description>/</description>
+		<code><![CDATA[:$end$/]]></code>
+	</snippet>
+	<snippet name="]" shortcut="pumlact2">
+		<description>]</description>
+		<code><![CDATA[:$end$]]]></code>
+	</snippet>
+	<snippet name="}" shortcut="pumlact2">
+		<description>}</description>
+		<code><![CDATA[:$end$}]]></code>
+	</snippet>
+
+	<snippet name="New Frame" shortcut="pumlfra">
+		<description>New Frame</description>
+		<code><![CDATA[rectangle W1 [
+	{{
+		salt
+		{+
+			$end$
+		}
+	}}
+]
+]]></code>
+	</snippet>
+	<snippet name="Button" shortcut="pumlfra">
+		<description>New Frame</description>
+		<code><![CDATA[[$end$]]]></code>
+	</snippet>
+	<snippet name="CheckBox" shortcut="pumlfra">
+		<description>CheckBox</description>
+		<code><![CDATA[[]$end$]]></code>
+	</snippet>
+	<snippet name="Radio" shortcut="pumlfra">
+		<description>Radio Button</description>
+		<code><![CDATA[()$end$]]></code>
+	</snippet>
+	<snippet name="Input" shortcut="pumlfra">
+		<description>Input</description>
+		<code><![CDATA["$end$" as ]]></code>
+	</snippet>
+	<snippet name="DropList" shortcut="pumlfra">
+		<description>DropList</description>
+		<code><![CDATA[^$end$^]]></code>
+	</snippet>
+	<snippet name="GroupBox" shortcut="pumlfra">
+		<description>GroupBox</description>
+		<code><![CDATA[{^""
+	$end$
+}
+]]></code>
+	</snippet>
+	<snippet name="Tree" shortcut="pumlfra">
+		<description>GroupBox</description>
+		<code><![CDATA[{T
+	+ Base$end$
+	++ Folder
+	+++ Record
+	+++ Record
+	++ Folder
+	+++ Record
+}
+]]></code>
+	</snippet>
+	<snippet name="ScrollBars" shortcut="pumlfra">
+		<description>ScrollBar</description>
+		<code><![CDATA[{S
+	Message
+	.
+	.
+	.
+	.
+}
+]]></code>
+	</snippet>
+	<snippet name="ScrollBars right" shortcut="pumlfra">
+		<description>ScrollBar</description>
+		<code><![CDATA[{SI
+	Message
+	.
+	.
+	.
+	.
+}
+]]></code>
+	</snippet>
+	<snippet name="ScrollBars bottom" shortcut="pumlfra">
+		<description>ScrollBar</description>
+		<code><![CDATA[{S-
+	Message
+	.
+	.
+	.
+	.
+}
+]]></code>
+	</snippet>
+	<snippet name="Open Iconic" shortcut="pumlfra">
+		<description>Icon</description>
+		<code><![CDATA[listopeniconic
+$end$]]></code>
+	</snippet>
+	<snippet name="Menu" shortcut="pumlfra">
+		<description>Menu</description>
+		<code><![CDATA[{* File | Edit | Source | Help 
+  File | New | Open File | - | Close | Close All | - | Quit}]]></code>
+	</snippet>
+	<snippet name="Tab" shortcut="pumlfra">
+		<description>Tab</description>
+		<code><![CDATA[{/ <b>General | Fullscreen | Behavior | Saving }
+{
+	$end$
+}
+]]></code>
+	</snippet>
+
+	<snippet name="State long name, pseudo, proto" shortcut="pumlsta">
+		<description>State</description>
+		<code><![CDATA[state "$name$" as $pseudo$ << $proto$ >>
+$end$]]></code>
+	</snippet>
+	<snippet name="State long name, pseudo" shortcut="pumlsta">
+		<description>State</description>
+		<code><![CDATA[state "$name$" as $pseudo$
+$end$]]></code>
+	</snippet>
+	<snippet name="State pseudo" shortcut="pumlsta">
+		<description>State</description>
+		<code><![CDATA[state $pseudo$ 
+$end$]]></code>
+	</snippet>
+	<snippet name="Start to state" shortcut="pumlsta">
+		<description>State</description>
+		<code><![CDATA[[*] --> $pseudo$ : $desc$
+$end$]]></code>
+	</snippet>
+	<snippet name="State to end" shortcut="pumlsta">
+		<description>State</description>
+		<code><![CDATA[$pseudo$ --> [*] : $desc$
+$end$]]></code>
+	</snippet>
+	<snippet name="Composite State long name, pseudo, proto" shortcut="pumlsta">
+		<description>State</description>
+		<code><![CDATA[state "$name$" as $pseudo$ << $proto$ >> {
+	$end$
+}]]></code>
+	</snippet>
+	<snippet name="Composite State long name, pseudo" shortcut="pumlsta">
+		<description>State</description>
+		<code><![CDATA[state "$name$" as $pseudo$ {
+	$end$
+}]]></code>
+	</snippet>
+	<snippet name="Composite State pseudo" shortcut="pumlsta">
+		<description>State</description>
+		<code><![CDATA[state $pseudo$ {
+	$end$
+}]]></code>
+	</snippet>
+	
+	<snippet name="New Gantt" shortcut="pumlgantt">
+		<description>Gantt</description>
+		<code><![CDATA[@startgantt
+allowmixing
+header
+<font color=red>Class definitions:</font>
+[Ref] Enter Diagram Title
+endheader
+center footer MyRPG Class Diagram
+title $title$
+
+	project starts the 2018/04/09
+	saturday are closed
+	sunday are closed
+	2019/05/01 is closed
+	2019/05/08 is closed
+	2019/08/01 to 2019/08/20 is closed
+	$end$
+@endgantt]]></code>
+	</snippet>
+	<snippet name="New Task" shortcut="pumlgantt">
+		<description>Task</description>
+		<code><![CDATA[[$name$] as [$pseudo$] lasts $dur$ days
+$end$]]></code>
+	</snippet>
+	<snippet name="New Task with resource" shortcut="pumlgantt">
+		<description>Task</description>
+		<code><![CDATA[[$name$] as [$pseudo$] on {$act$:0%} lasts $dur$ days
+$end$]]></code>
+	</snippet>
+	<snippet name="Task Start in the same time" shortcut="pumlgantt">
+		<description>Gantt Link</description>
+		<code><![CDATA[[$pseudo1$] starts at [$pseudo2$]'s start
+$end$]]></code>
+	</snippet>
+	<snippet name="Task Start at the end of another task" shortcut="pumlgantt">
+		<description>Gantt Link</description>
+		<code><![CDATA[[$pseudo1$] starts at [$pseudo2$]'s end
+$end$]]></code>
+	</snippet>
+	<snippet name="Link 2 tasks" shortcut="pumlgantt">
+		<description>Gantt Link</description>
+		<code><![CDATA[[$pseudo1$] -> [$pseudo2$]
+$end$]]></code>
+	</snippet>
+	<snippet name="Set task color" shortcut="pumlgantt">
+		<description>Gantt Set</description>
+		<code><![CDATA[[$pseudo$] is colored in GreenYellow/Green
+$end$]]></code>
+	</snippet>
+	<snippet name="Define phase" shortcut="pumlgantt">
+		<description>Gantt Link</description>
+		<code><![CDATA[-- $pahse$ --
+$end$]]></code>
+	</snippet>
+	<snippet name="Jalon" shortcut="pumlgantt">
+		<description>Jalon</description>
+		<code><![CDATA[[$jalon$] happens at [$pseudo$]'s end
+$end$]]></code>
+	</snippet>
+	
+</G18Snippet>
