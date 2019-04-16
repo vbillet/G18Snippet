@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="..\src\DockingFeature\GoToLineDlg.cpp">
+      <Filter>DockingFeature</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\DockingFeature\StaticDialog.cpp">
+      <Filter>DockingFeature</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\PluginDefinition.cpp" />
+    <ClCompile Include="..\src\G18NppSnippet.cpp" />
+    <ClCompile Include="..\src\NppManager.cpp">
+      <Filter>Npp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\G18Plugin.cpp" />
+    <ClCompile Include="..\src\G18Snippet.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\DockingFeature\DockingDlgInterface.h">
+      <Filter>DockingFeature</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\DockingFeature\dockingResource.h">
+      <Filter>DockingFeature</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\DockingFeature\GoToLineDlg.h">
+      <Filter>DockingFeature</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\DockingFeature\StaticDialog.h">
+      <Filter>DockingFeature</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\DockingFeature\Docking.h">
+      <Filter>DockingFeature</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\DockingFeature\Window.h">
+      <Filter>DockingFeature</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\menuCmdID.h">
+      <Filter>includes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Notepad_plus_msgs.h">
+      <Filter>includes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\PluginInterface.h">
+      <Filter>includes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Scintilla.h">
+      <Filter>includes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\PluginDefinition.h" />
+    <ClInclude Include="..\src\NppManager.h">
+      <Filter>Npp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\G18Plugin.h" />
+    <ClInclude Include="..\src\rapidxml\rapidxml.hpp">
+      <Filter>rapidxml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\rapidxml\rapidxml_iterators.hpp">
+      <Filter>rapidxml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\rapidxml\rapidxml_print.hpp">
+      <Filter>rapidxml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\rapidxml\rapidxml_utils.hpp">
+      <Filter>rapidxml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\resource.h" />
+    <ClInclude Include="..\src\G18Snippet.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="DockingFeature">
+      <UniqueIdentifier>{73b56ff5-ec94-439d-8c82-b2c57c6cb455}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="includes">
+      <UniqueIdentifier>{7cc91658-b0d9-4b84-a081-8131cc8e907e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Npp">
+      <UniqueIdentifier>{b6bc6474-0b48-4f59-98a9-d196c8400f8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="rapidxml">
+      <UniqueIdentifier>{959e65a5-a1d4-485e-a8db-cf852cfec8a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="resources">
+      <UniqueIdentifier>{cc766b71-66e8-48b7-ae2b-1fabcd2bb603}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\src\G18NppSnippet.rc" />
+  </ItemGroup>
+</Project>
