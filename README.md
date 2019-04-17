@@ -6,10 +6,7 @@ G18Snippet allows you to insert code snippets into Notepad++.<br/>
 Into Notepad++, type a shortcut followed by [TAB], G18Snippet will show you a window of all code snippets corresponding to this shortcut.<br/>
 In addition, it will prompt for additional variables needed to build the code with the selected snippet.<br/>
 
-## More informations in the wiki : 
+## More about G18Snippet : 
 [Wiki Home](https://github.com/vbillet/G18Snippet/wiki)<br/>
-[Installation](https://github.com/vbillet/G18Snippet/wiki/Installation)<br/>
-[Compiling G18Snippet](https://github.com/vbillet/G18Snippet/wiki/Compiling-G18Snippet)
-Supported Languages
 
 (c) Vincent BILLET - 2019
