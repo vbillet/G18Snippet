@@ -7,4 +7,4 @@ assignees: ''
 
 ---
 
-
+Type your question here, perhaps the answer will be 42.
