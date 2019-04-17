@@ -1,0 +1,12 @@
+/sources/cpp/vs.proj/.vs/G18NppSnippet/v15/*.suo
+/sources/cpp/vs.proj/.vs/G18NppSnippet/v15/*.db
+/sources/cpp/vs.proj/Debug/*.obj
+/sources/cpp/vs.proj/Debug/*.pdb
+/sources/cpp/vs.proj/Debug/G18NppSnippet.tlog/*.tlog
+/sources/cpp/vs.proj/Release/*.obj
+/sources/cpp/vs.proj/Debug/*.exp
+/sources/cpp/vs.proj/Debug/*.ilk
+*.lib
+*.log
+*.tlog
+/sources/cpp/vs.proj/x64/Debug/*.obj
