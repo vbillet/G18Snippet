@@ -1,4 +1,4 @@
-# G18Snippet
+# How to contribute to G18Snippet project?
 G18Snippet is an open source project. As such, and to continue to live, G18Snippet needs your help. 
 This document explains how you can, most simply, help the G18Snippet project.
 
