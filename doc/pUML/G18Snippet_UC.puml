@@ -1,0 +1,45 @@
+@startuml
+header
+<font color=red>Use Case:</font>
+[Ref] G18Snippet Use Case Diagram
+endheader
+center footer G18Snippet Use Case Diagram
+title General Use case \nTitle.
+
+skinparam handwritten true
+skinparam defaultFontColor #FFFFFF
+skinparam BackgroundColor black
+
+skinparam usecase {
+	BackgroundColor black
+	bordercolor white
+	ArrowColor LightGreen
+	BackgroundColor<< Main >> #0040A0
+	BackgroundColor<< Specif >> #A04000
+	BackgroundColor<< Web >> #40A040
+	BackgroundColor<< SOAP >> #A04040
+}
+skinparam actor {
+	BackgroundColor black
+	bordercolor Red
+	ArrowColor LightGreen
+}
+skinparam database {
+    BackgroundColor black
+	BackgroundColor << XML >> #800000
+	BackgroundColor << MySQL >> #008000
+    bordercolor white
+    ArrowColor LightGreen
+}
+skinparam package {
+	BackgroundColor black
+	bordercolor Red
+	ArrowColor LightGreen
+}
+
+:Coder: as CODER
+(Insert a Snippet) as SNIPIT
+CODER --> SNIPIT : Shortcut + [TAB]
+(Add a Snippet to the library) as WRITESNIP
+CODER --> WRITESNIP : XML Configuration file edition
+@enduml
