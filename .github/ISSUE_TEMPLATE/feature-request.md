@@ -7,5 +7,4 @@ assignees: ''
 
 ---
 
-<b>Feature request description :</b>
-Explain all you want.
+Explain all about the expectd feature.
