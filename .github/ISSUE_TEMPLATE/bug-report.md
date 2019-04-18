@@ -7,8 +7,6 @@ assignees: ''
 
 ---
 
-<b>Description:</b>
-Be exhaustive. What were you doing? On which button did you clicked ? ...
-<br/>
-<b>Error Message if any</b>
-No error :).
+Be exhaustive. What were you doing? On which button did you clicked ? What Happened ? What did you expected ? ...
+
+Specify Error Message if any.

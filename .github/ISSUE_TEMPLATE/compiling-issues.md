@@ -7,8 +7,7 @@ assignees: ''
 
 ---
 
-<b>Which error do you have ? </b>
+Which error do you have ?
 Copy/Paste your compilation output.
 
-<b>Did you make some modifications to G18Snippet source code ?</b>
-If yes, post your code.
+Did you make some modifications to G18Snippet source code ? If yes, post your code.
