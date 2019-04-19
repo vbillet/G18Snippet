@@ -57,8 +57,8 @@ void G18Plugin::loadLang(int lang)
 bool G18Plugin::parse(char * src, int lang)
 {
 	using namespace rapidxml;
-	G18Plugin::SnippetList *table = _langTable[lang];
-	if (table->size() != 0) table->clear();
+	G18Plugin::SnippetList table = _langTable[lang];
+	if (table.size() != 0) table.clear();
 	try {
 		xml_document<> doc;
 		doc.parse<0>(src);
@@ -73,7 +73,7 @@ bool G18Plugin::parse(char * src, int lang)
 			G18Snippet* newSnippet = new G18Snippet();
 			if (newSnippet->Parse(snippet))
 			{
-				table->push_back(newSnippet);
+				table.push_back(newSnippet);
 			}
 			else
 			{
@@ -83,9 +83,10 @@ bool G18Plugin::parse(char * src, int lang)
 	}
 	catch (parse_error& er) {
 		_lastError = er.what();
-		// ErrorMessage(_T("XML format error!"));
+		//ErrorMessage(_T("XML format error!"));
 		return false;
 	}
+	_langTable[lang] = table;
 	return true;
 }
 void G18Plugin::ReloadLang()
@@ -106,7 +107,7 @@ void G18Plugin::ShowAbout()
 void G18Plugin::onCommandSelChange(HWND hWnd)
 {
 	HWND hList = ::GetDlgItem(hWnd, IDC_LISTG18);
-	int selIndex = SendMessage(hList, LB_GETCURSEL, 0, 0L);
+	int selIndex = SendMessage(hList, LB_GETCURSEL, 0L, 0L);
 	wchar_t Temp[250];
 	SendMessage(hList, LB_GETTEXT, selIndex, (LPARAM)Temp);
 
@@ -132,12 +133,12 @@ void G18Plugin::onAboutCommand(HWND hWnd, int id, int)
 		break;
 	}
 }
-void G18Plugin::onAboutInitDialog(HWND /*hWnd*/, int, int)
+void G18Plugin::onAboutInitDialog(HWND hWnd, int, int)
 {
-/*	HWND hTxt = ::GetDlgItem(hWnd, IDC_NBSNIPPET);
-	string nbGlobalSnip = "Number of Snippets : ";*/
-	//string centerMsg = nbGlobalSnip + to_string(_langTable[NppManager::GLOBAL]->size());
-	//SetWindowTextA(hTxt, centerMsg.c_str());
+	HWND hTxt = ::GetDlgItem(hWnd, IDC_NBSNIPPET);
+	string nbGlobalSnip = "Number of Snippets : ";
+	string centerMsg = nbGlobalSnip + to_string(_langTable[NppManager::GLOBAL].size());
+	SetWindowTextA(hTxt, centerMsg.c_str());
 }
 INT_PTR CALLBACK ProcAbout(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM /*lParam*/)
 {
@@ -164,7 +165,7 @@ G18Plugin::SnippetList* G18Plugin::getCmdList(string pShortcut, int pLang)
 {
 	G18Plugin::SnippetList* result =new G18Plugin::SnippetList;
 	result->clear();
-	for (G18Plugin::SnippetList::iterator itr = _langTable[pLang]->begin(); itr != _langTable[pLang]->end(); ++itr)
+	for (G18Plugin::SnippetList::iterator itr = _langTable[pLang].begin(); itr != _langTable[pLang].end(); ++itr)
 	{
 		G18Snippet* s = *itr;
 		string shortcut = s->GetShortcut(); 

@@ -23,7 +23,7 @@ public:
 private:
 	typedef vector<G18Snippet*> SnippetList;
 
-	SnippetList* _langTable[NppManager::GLOBAL];
+	SnippetList _langTable[NppManager::GLOBAL];
 	/*vector<G18Snippet*>* _cmds;*/
 	string _lastError;
 
