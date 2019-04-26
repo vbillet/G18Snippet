@@ -1,5 +1,5 @@
 # G18Snippet
-[![GitHub version](https://badge.fury.io/gh/vbillet/G18Snippet.svg)](https://badge.fury.io/gh/vbillet/G18Snippet)<br/>
+[![GitHub version](https://badge.fury.io/gh/vbillet%2FG18Snippet.svg)](https://badge.fury.io/gh/vbillet/G18Snippet/releases)<br/>
 Version: 0.1.1<br/>
 
 G18Snippet is a plugin for Notepad++ (Npp) 7.5 and above.<br/>
