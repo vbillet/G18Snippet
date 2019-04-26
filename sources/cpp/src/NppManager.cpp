@@ -151,4 +151,20 @@ void NppManager::GetIndent(int pos, string &indent)
 	}
 }
 
+string NppManager::GetFileName()
+{
+	::SendMessage(_nppData._nppHandle, NPPM_GETFILENAME, MAX_PATH, (LPARAM)_fileName);
+	wstring t(&_fileName[0]);
+	string r(t.begin(), t.end());
+	return r;
+}
+
+string NppManager::GetFileDirectory()
+{
+	::SendMessage(_nppData._nppHandle, NPPM_GETCURRENTDIRECTORY, MAX_PATH, (LPARAM)_fileName);
+	wstring t(&_fileName[0]);
+	string r(t.begin(), t.end());
+	return r;
+}
+
 

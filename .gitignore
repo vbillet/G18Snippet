@@ -16,3 +16,8 @@
 *.ipdb
 *.opendb
 *.ipch
+/sources/cpp/vs.proj/Debug/G18NppSnippet.dll
+/sources/cpp/vs.proj/Release/G18NppSnippet.dll
+/sources/cpp/vs.proj/x64/Debug/G18NppSnippet.dll
+/sources/cpp/vs.proj/x64/Release/G18NppSnippet.dll
+/plugins/G18NppSnippet.dll

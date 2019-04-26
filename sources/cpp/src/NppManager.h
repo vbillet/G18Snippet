@@ -27,6 +27,7 @@ private:
 	NppData			_nppData;
 	HWND			_curScintilla;
 	TCHAR			_pluginPath[MAX_PATH];
+	TCHAR			_fileName[MAX_PATH];
 
 public:
 	enum {
@@ -69,6 +70,8 @@ public:
 	int GetWordStartPos(int curPos) { return static_cast<int>(::SendMessage(_curScintilla, SCI_WORDSTARTPOSITION, curPos, (LPARAM)true)); }
 	int GetWordEndPos(int curPos) { return static_cast<int>(::SendMessage(_curScintilla, SCI_WORDENDPOSITION, curPos, (LPARAM)true)); }
 	TCHAR* GetPluginPath() { return _pluginPath; }
+	string GetFileName();
+	string GetFileDirectory();
 };
 
 const TCHAR* const LANG_NAMES[NppManager::TABLE_COUNT] = {

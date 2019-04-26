@@ -247,6 +247,7 @@ void G18Plugin::validateSnip(HWND hWnd)
 		npp->GetIndent(_curPos, indent);
 		ReindentText(code, indent);
 
+		processFileName(code);
 		processVars(hWnd,snippet, code);
 		processEnd(code);
 
@@ -336,6 +337,47 @@ void G18Plugin::processEnd(string & text)
 	size_t pos = text.find("$end$", 0);
 	_curPos += pos;
 	FindReplace(text, "$end$", "");
+}
+
+void G18Plugin::processFileName(string & text)
+{
+	string fileName = NppManager::Get()->GetFileName();
+	unsigned found = fileName.find_last_of(".");
+	string fileBase = fileName.substr(0,found);
+	string fileExt = fileName.substr(found+1);
+	string path = NppManager::Get()->GetFileDirectory();
+	found = path.find_last_of("/\\");
+	string dir = path.substr(found + 1);
+	string FullFileName = path+"\\"+fileName;
+	FindReplace(text, "$FILE_NAME$",		fileName);
+	FindReplace(text, "$FILE_NAME_UPPER$",  Upper(fileName));
+	FindReplace(text, "$FILE_NAME_LOWER$",  Lower(fileName));
+	FindReplace(text, "$FILE_NAME_PASCAL$", Pascal(fileName));
+
+	FindReplace(text, "$FILE_BASE$",		fileBase);
+	FindReplace(text, "$FILE_BASE_UPPER$",	Upper(fileBase));
+	FindReplace(text, "$FILE_BASE_LOWER$",	Lower(fileBase));
+	FindReplace(text, "$FILE_BASE_PASCAL$", Pascal(fileBase));
+
+	FindReplace(text, "$FILE_EXT$",			fileExt);
+	FindReplace(text, "$FILE_EXT_UPPER$",	Upper(fileExt));
+	FindReplace(text, "$FILE_EXT_LOWER$",	Lower(fileExt));
+	FindReplace(text, "$FILE_EXT_PASCAL$",	Pascal(fileExt));
+
+	FindReplace(text, "$FULL_FILE_NAME$",		FullFileName);
+	FindReplace(text, "$FULL_FILE_NAME_UPPER$", Upper(FullFileName));
+	FindReplace(text, "$FULL_FILE_NAME_LOWER$",	Lower(FullFileName));
+	FindReplace(text, "$FULL_FILE_NAME_PASCAL$",Pascal(FullFileName));
+
+	FindReplace(text, "$FILE_PATH$",		path);
+	FindReplace(text, "$FILE_PATH_UPPER$",  Upper(path));
+	FindReplace(text, "$FILE_PATH_LOWER$",  Lower(path));
+	FindReplace(text, "$FILE_PATH_PASCAL$", Pascal(path));
+
+	FindReplace(text, "$FILE_DIR$",			dir);
+	FindReplace(text, "$FILE_DIR_UPPER$",   Upper(dir));
+	FindReplace(text, "$FILE_DIR_LOWER$",   Lower(dir));
+	FindReplace(text, "$FILE_DIR_PASCAL$",  Pascal(dir));
 }
 
 void G18Plugin::showSnippetVars(HWND hWnd, G18Snippet* pSnippet)

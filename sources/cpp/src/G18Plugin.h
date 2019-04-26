@@ -3,6 +3,7 @@
 #define G18_PLUGIN_H
 
 #include <stdio.h>
+#include <algorithm>
 #include <string>
 #include <vector>
 #include "NppManager.h"
@@ -43,8 +44,13 @@ private:
 
 	void ReindentText(string& text, const string& indent);
 	void FindReplace(string& text, const string& find, const string& replacement);
+	string Upper(string ch) { string str = ch; transform(str.begin(), str.end(), str.begin(), ::toupper); return str;}
+	string Lower(string ch) { string str = ch; transform(str.begin(), str.end(), str.begin(), ::tolower); return str; }
+	string Pascal(string ch) { string str = ch;  string chu = Upper(ch); str[0] = chu[0]; return str; }
+	string fileBase(string ch);
 	void processVars(HWND hWnd,G18Snippet* pSnippet,string& text);
 	void processEnd(string& text);
+	void processFileName(string &text);
 	void showSnippetVars(HWND hWnd,G18Snippet* pSnippet);
 public : 
 	void Init();
