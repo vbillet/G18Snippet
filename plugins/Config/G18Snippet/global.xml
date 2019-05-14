@@ -1,29 +1,202 @@
 <?xml version="1.0"?>
 <G18Snippet>
-	<snippet name="New UseCase Diagram" shortcut="pumluc">
+	<snippet name="Variable optionnelle" shortcut="g18">
+		<var name="var" optional="1" label="Variable name"></var>
+		<var name="lbl" optional="1" label="Label"></var>
+		<description>Variable optionnelle.</description>
+		<code><![CDATA[<var name="$var$" optional="1" label="$lbl$"></var>
+$end$]]></code>
+	</snippet>
+	<snippet name="Variable obligatoire" shortcut="g18">
+		<var name="var" optional="1" label="Variable name"></var>
+		<var name="lbl" optional="1" label="Label"></var>
+		<description>Variable obligatoire.</description>
+		<code><![CDATA[<var name="$var$" optional="0" label="$lbl$"></var>
+$end$]]></code>
+	</snippet>
+
+	<snippet name="New Empty Diagram" shortcut="new">
+		<var name="title" optional="1" label="Diagram title"></var>
+		<var name="ref" optional="1" label="Reference"></var>
+		<var name="footer" optional="1" label="footer"></var>
+		<description>Create an empty plantUML diagram</description>
+		<code><![CDATA[@startuml
+header
+	<font color=red>General diagram :</font>
+	[Ref] $ref$
+endheader
+title $title$
+center footer $footer$ 
+
+$end$
+
+@enduml
+]]></code>
+	</snippet>
+	<snippet name="New UseCase Diagram" shortcut="new">
+		<var name="title" optional="1" label="Diagram title"></var>
+		<var name="ref" optional="1" label="Reference"></var>
+		<var name="footer" optional="1" label="footer"></var>
 		<var name="mainActor" optional="1" label="main Actor"></var>
 		<var name="mainActorPseudo" optional="1" label="main Actor Pseudo"></var>
+		<var name="UCDesc" optional="1" label="Use case description"></var>
+		<var name="UC" optional="1" label="Use case pseudo"></var>
+		<var name="RelDesc" optional="1" label="Label on the arrow"></var>
 		<description>A Simple puml UseCase</description>
 		<code><![CDATA[@startuml
 header
-<font color=red>Use Case:</font>
-[Ref] Enter Diagram Title
+	<font color=red>Use Case:</font>
+	[Ref] $ref$
 endheader
-center footer MyRPG Use Case Diagram
-title Use Case \nTitle.
+center footer $footer$ 
+title $title$
 
-skinparam handwritten true
+:$mainActor$: as $mainActorPseudo$
+
+($UCDesc$) as $UC$
+$mainActorPseudo$ --> $UC$ : $RelDesc$
+
+$end$
+
+@enduml
+]]></code>
+	</snippet>
+	<snippet name="New Sequence Diagram with autoinc" shortcut="new">
+		<var name="title" optional="1" label="Diagram title"></var>
+		<var name="ref" optional="1" label="Reference"></var>
+		<var name="footer" optional="1" label="footer"></var>
+		<var name="msgprefix" optional="1" label="Messages prefix"></var>
+		<var name="autostart" optional="1" label="Start number"></var>
+		<var name="autoinc" optional="1" label="Increment"></var>
+		<description>Create a new sequence diagram with autoinc/</description>
+		<code><![CDATA[@startuml
+header
+	<font color=red>Sequence diagram :</font>
+	[Ref] $ref$
+endheader
+center footer $footer$ 
+title $title$
+
+== INIT ==
+autonumber 10 10 "<b>($msgprefix$0)"
+
+$end$
+
+@enduml]]></code>
+	</snippet>
+	<snippet name="New Sequence Diagram without autoinc" shortcut="new">
+		<var name="title" optional="1" label="Diagram title"></var>
+		<var name="ref" optional="1" label="Reference"></var>
+		<var name="footer" optional="1" label="footer"></var>
+		<description>Create a new sequence diagram with autoinc/</description>
+		<code><![CDATA[@startuml
+header
+	<font color=red>Sequence diagram :</font>
+	[Ref] $ref$
+endheader
+center footer $footer$ 
+title $title$
+
+== INIT ==
+
+$end$
+@enduml]]></code>
+	</snippet>
+	<snippet name="New Class Diagram" shortcut="new">
+		<var name="title" optional="1" label="Diagram title"></var>
+		<var name="ref" optional="1" label="Reference"></var>
+		<var name="footer" optional="1" label="footer"></var>
+		<description>New Class Diagram</description>
+		<code><![CDATA[@startuml
+header
+	<font color=red>Class diagram :</font>
+	[Ref] $ref$
+endheader
+center footer $footer$ 
+title $title$
+
+$end$
+@enduml]]></code>
+	</snippet>
+	<snippet name="New Maquette" shortcut="new">
+		<var name="title" optional="1" label="Maquette title"></var>
+		<var name="ref" optional="1" label="Reference"></var>
+		<var name="footer" optional="1" label="footer"></var>
+		<description>New Maquette</description>
+		<code><![CDATA[@startuml
+header
+	<font color=red>Deployement diagram :</font>
+	[Ref] $ref$
+endheader
+center footer $footer$ 
+title $title$
+!definelong MAQ(x,t)
+"<< ##t >>
+{{ 
+salt 
+_##x
+}}
+" as x
+!enddefinelong
+
+$end$
+@enduml]]></code>
+	</snippet>
+	<snippet name="New Deployement Diagram" shortcut="new">
+		<var name="title" optional="1" label="Diagram title"></var>
+		<var name="ref" optional="1" label="Reference"></var>
+		<var name="footer" optional="1" label="footer"></var>
+		<description>New Class Diagram</description>
+		<code><![CDATA[@startuml
+header
+	<font color=red>Deployement diagram :</font>
+	[Ref] $ref$
+endheader
+center footer $footer$ 
+title $title$
+
+$end$
+@enduml]]></code>
+	</snippet>
+	<snippet name="New Activity Diagram" shortcut="new">
+		<var name="title" optional="1" label="Diagram title"></var>
+		<var name="ref" optional="1" label="Reference"></var>
+		<var name="footer" optional="1" label="footer"></var>
+		<description>New Class Diagram</description>
+		<code><![CDATA[@startuml
+header
+	<font color=red>Activity diagram :</font>
+	[Ref] $ref$
+endheader
+center footer $footer$ 
+title $title$
+
+$end$
+@enduml]]></code>
+	</snippet>
+	<snippet name="New Gantt" shortcut="new">
+		<var name="yy" optional="1" label="project start year"></var>
+		<var name="mm" optional="1" label="project start month"></var>
+		<var name="dd" optional="1" label="project start day"></var>
+		<description>Gantt</description>
+		<code><![CDATA[@startgantt
+project starts the $yy$/$mm$/$dd$
+$end$
+@endgantt]]></code>
+	</snippet>
+	<snippet name="Skin Black" shortcut="skin">
+		<description>Dark theme handwritten</description>
+		<code><![CDATA[skinparam handwritten true
 skinparam defaultFontColor #FFFFFF
 skinparam BackgroundColor black
+skinparam bordercolor white
+skinparam ArrowColor LightGreen
 
 skinparam usecase {
 	BackgroundColor black
 	bordercolor white
 	ArrowColor LightGreen
-	BackgroundColor<< Main >> #0040A0
-	BackgroundColor<< Specif >> #A04000
-	BackgroundColor<< Web >> #40A040
-	BackgroundColor<< SOAP >> #A04040
+	BackgroundColor<< StandardUseCase >> #0040A0
 }
 skinparam actor {
 	BackgroundColor black
@@ -33,34 +206,32 @@ skinparam actor {
 skinparam database {
     BackgroundColor black
 	BackgroundColor << XML >> #800000
+	BackgroundColor << JSON >> #800000
 	BackgroundColor << MySQL >> #008000
+	BackgroundColor << Oracle >> #00A000
+	BackgroundColor << Postgres >> #00C000
     bordercolor white
     ArrowColor LightGreen
 }
 skinparam package {
 	BackgroundColor black
 	bordercolor Red
-	bordercolor<<MyRPGEditorBase>> Green
+	bordercolor<<PackgeRed>> Red
+	bordercolor<<PackgeGreen>> Green
+	bordercolor<<PackgeBlue>> Blue
 	ArrowColor LightGreen
 }
-
-:$mainActor$: as $mainActorPseudo$
-
-(Use case) as UC
-$mainActorPseudo$ --> UC : Description
-$end$
-@enduml
-]]></code>
+$end$]]></code>
 	</snippet>
-	<snippet name="Actor" shortcut="pumluc">
+
+	<snippet name="Actor" shortcut="uc">
 		<var name="ActorName" optional="1" label="Actor full name"/>
 		<var name="ActorPseudo" optional="1" label="Actor pseudo"/>
 		<description>Define an actor</description>
 		<code><![CDATA[:$ActorName$: as $ActorPseudo$
 $end$]]></code>
 	</snippet>
-	
-	<snippet name="Use Case" shortcut="pumluc">
+	<snippet name="Use Case" shortcut="uc">
 		<var name="UseCase" optional="1" label="Use Case"/>
 		<var name="UCPseudo" optional="1" label="Pseudo"/>
 		<var name="UCSRC" optional="1" label="Pseudo Source"/>
@@ -70,7 +241,7 @@ $end$]]></code>
 $UCSRC$ --> $UCPseudo$ : $Description$
 $end$]]></code>
 	</snippet>
-	<snippet name="DataBase" shortcut="pumluc">
+	<snippet name="DataBase" shortcut="uc">
 		<var name="dbname" optional="0" label="DataBase Name"/>
 		<var name="dbpseudo" optional="0" label="DataBase Pseudo"/>
 		<var name="ucpseudo" optional="0" label="Use Case Pseudo"/>
@@ -82,21 +253,6 @@ $ucpseudo$ <.right.> $dbpseudo$ : $description$
 $end$]]></code>
 	</snippet>
 
-	<snippet name="New Sequence Diagram" shortcut="pumlseq">
-		<description>a Use Case</description>
-		<code><![CDATA[@startuml
-header
-<font color=red>Sequence :</font>
-[Ref] Enter Diagram Title
-endheader
-center footer MyRPG Sequence Diagram
-title Sequence \nTitle.
-
-== INIT ==
-autonumber 10 10 "<b>(ACCINI0)"
-$end$
-@enduml]]></code>
-	</snippet>
 	<snippet name="Message" shortcut="pumlseq">
 		<description>a Message</description>
 		<code><![CDATA[$msgSrc$ -> $msgDest$: $description$
@@ -162,41 +318,10 @@ $end$]]></code>
 $end$]]></code>
 	</snippet>
 	
-	<snippet name="New Class Diagram" shortcut="pumlclass">
-		<description>New Class Diagram</description>
-		<code><![CDATA[@startuml
-allowmixing
-header
-<font color=red>Class definitions:</font>
-[Ref] Enter Diagram Title
-endheader
-center footer MyRPG Class Diagram
-title $title$
-
-skinparam defaultFontColor #FFFFFF
-skinparam BackgroundColor black
-skinparam class{
-	BackgroundColor black
-	bordercolor white
-	ArrowColor LightGreen
-}
-skinparam Component{
-	BackgroundColor black
-	bordercolor white
-	ArrowColor LightGreen
-}
-skinparam database{
-	BackgroundColor black
-	bordercolor white
-	ArrowColor LightGreen
-}
-$end$
-@enduml]]></code>
-	</snippet>
-	<snippet name="New class with stereotype" shortcut="pumlclass">
+	<snippet name="New class with template" shortcut="class">
 		<var name="class" optional="1" label="Class Name"/>
 		<var name="stereotype" optional="1" label="Stereotype"/>
-		<description>new class</description>
+		<description>New class with template</description>
 		<code><![CDATA[class $class$ << $stereotype$ >> {
 	.. package private attributes ..
 	.. private attributes ..
@@ -213,8 +338,9 @@ $end$
 	.. public methods ..
 }]]></code>
 	</snippet>
-	<snippet name="New class" shortcut="pumlclass">
-		<description>new class</description>
+	<snippet name="New class" shortcut="class">
+		<var name="class" optional="1" label="Class Name"/>
+		<description>New class</description>
 		<code><![CDATA[class $class$ {
 	.. package private attributes ..
 	.. private attributes ..
@@ -231,12 +357,12 @@ $end$
 	.. public methods ..
 }]]></code>
 	</snippet>
-	<snippet name="New class with template and letter configuration" shortcut="pumlclass">
+	<snippet name="New class with template and letter configuration" shortcut="class">
 		<var name="class" optional="1" label="Class Name"/>
 		<var name="stereotype" optional="1" label="Stereotype"/>
 		<var name="letter" optional="1" label="Letter"/>
 		<var name="color" optional="1" label="Color #"/>
-		<description>new class</description>
+		<description>New class with template and letter configuration</description>
 		<code><![CDATA[class $class$ << ($letter$,#$color$) $stereotype$ >> {
 	.. package private attributes ..
 	.. private attributes ..
@@ -253,9 +379,10 @@ $end$
 	.. public methods ..
 }]]></code>
 	</snippet>
-
-	<snippet name="New abstract class with template" shortcut="pumlclass">
-		<description>new class</description>
+	<snippet name="New abstract class with template" shortcut="class">
+		<var name="class" optional="1" label="Class Name"/>
+		<var name="template" optional="1" label="template"/>
+		<description>New abstract class with template</description>
 		<code><![CDATA[abstract class $class$ << $template$ >> {
 	.. package private attributes ..
 	.. private attributes ..
@@ -272,8 +399,9 @@ $end$
 	.. public methods ..
 }]]></code>
 	</snippet>
-	<snippet name="New abstract class" shortcut="pumlclass">
-		<description>new class</description>
+	<snippet name="New abstract class" shortcut="class">
+		<var name="class" optional="1" label="Class Name"/>
+		<description>New abstract class</description>
 		<code><![CDATA[abstract class $class$ {
 	.. package private attributes ..
 	.. private attributes ..
@@ -290,8 +418,12 @@ $end$
 	.. public methods ..
 }]]></code>
 	</snippet>
-	<snippet name="New abstract class with template and letter configuration" shortcut="pumlclass">
-		<description>new class</description>
+	<snippet name="New abstract class with template and letter configuration" shortcut="class">
+		<var name="class" optional="1" label="Class Name"/>
+		<var name="template" optional="1" label="Template"/>
+		<var name="letter" optional="1" label="Letter"/>
+		<var name="color" optional="1" label="Color #"/>
+		<description>"New abstract class with template and letter configuration</description>
 		<code><![CDATA[abstract class $class$ << ($letter$,#$color$) $template$ >> {
 	.. package private attributes ..
 	.. private attributes ..
@@ -308,9 +440,13 @@ $end$
 	.. public methods ..
 }]]></code>
 	</snippet>
-	<snippet name="New Interface with template" shortcut="pumlclass">
-		<description>new class</description>
-		<code><![CDATA[interface $class$ << $template$ >> {
+	<snippet name="New Interface with template" shortcut="class">
+		<var name="Interface" optional="1" label="Interface Name"/>
+		<var name="template" optional="1" label="Template"/>
+		<var name="letter" optional="1" label="Letter"/>
+		<var name="color" optional="1" label="Color #"/>
+		<description>New Interface with template</description>
+		<code><![CDATA[interface $Interface$ << $template$ >> {
 	.. package private attributes ..
 	.. private attributes ..
 	$end$
@@ -325,8 +461,9 @@ $end$
 	.. public methods ..
 }]]></code>
 	</snippet>
-	<snippet name="New interface" shortcut="pumlclass">
-		<description>new class</description>
+	<snippet name="New interface" shortcut="class">
+		<var name="Interface" optional="1" label="Interface Name"/>
+		<description>New interface</description>
 		<code><![CDATA[interface $class$ {
 	.. package private attributes ..
 	.. private attributes ..
@@ -342,91 +479,93 @@ $end$
 	.. public methods ..
 }]]></code>
 	</snippet>
-	<snippet name="New enum" shortcut="pumlclass">
+	<snippet name="New enum" shortcut="class">
+		<var name="Enum" optional="1" label="Enum Name"/>
 		<description>new class</description>
-		<code><![CDATA[enum $class$ {
+		<code><![CDATA[enum $Enum$ {
 	$end$
 }]]></code>
 	</snippet>
-	<snippet name="New annotation" shortcut="pumlclass">
+	<snippet name="New annotation" shortcut="class">
+		<var name="annotation" optional="1" label="Anotation Name"/>
 		<description>new class</description>
-		<code><![CDATA[annotation $class$ {
+		<code><![CDATA[annotation $annotation$ {
 	$end$
 }]]></code>
 	</snippet>
-	<snippet name="Attribute (Package Private)" shortcut="pumlclass">
+	<snippet name="Attribute (Package Private)" shortcut="class">
 		<description>Attribute (Package Private)</description>
 		<code><![CDATA[~ $end$]]></code>
 	</snippet>
-	<snippet name="Attribute (Private)" shortcut="pumlclass">
+	<snippet name="Attribute (Private)" shortcut="class">
 		<description>Attribute (Package Private)</description>
 		<code><![CDATA[- $end$]]></code>
 	</snippet>
-	<snippet name="Attribute (Protected)" shortcut="pumlclass">
+	<snippet name="Attribute (Protected)" shortcut="class">
 		<description>Attribute (Package Private)</description>
 		<code><![CDATA[# $end$]]></code>
 	</snippet>
-	<snippet name="Attribute (Public)" shortcut="pumlclass">
+	<snippet name="Attribute (Public)" shortcut="class">
 		<description>Attribute (Package Private)</description>
 		<code><![CDATA[+ $end$]]></code>
 	</snippet>
-	<snippet name="Method (Package Private)" shortcut="pumlclass">
+	<snippet name="Method (Package Private)" shortcut="class">
 		<description>Method (Package Private)</description>
 		<code><![CDATA[~ $end$()]]></code>
 	</snippet>
-	<snippet name="Method (Private)" shortcut="pumlclass">
+	<snippet name="Method (Private)" shortcut="class">
 		<description>Method (Private)</description>
 		<code><![CDATA[- $end$()]]></code>
 	</snippet>
-	<snippet name="Method (Protected)" shortcut="pumlclass">
+	<snippet name="Method (Protected)" shortcut="class">
 		<description>Method (Protected)</description>
 		<code><![CDATA[# $end$()]]></code>
 	</snippet>
-	<snippet name="Method (Public)" shortcut="pumlclass">
+	<snippet name="Method (Public)" shortcut="class">
 		<description>Method (Public)</description>
 		<code><![CDATA[+ $end$()]]></code>
 	</snippet>
-	<snippet name="Method (Public Getter)" shortcut="pumlclass">
+	<snippet name="Method (Public Getter)" shortcut="class">
 		<description>Method Getter</description>
 		<code><![CDATA[+ Get$end$()]]></code>
 	</snippet>
-	<snippet name="Method (Public Setter)" shortcut="pumlclass">
+	<snippet name="Method (Public Setter)" shortcut="class">
 		<description>Method Setter</description>
 		<code><![CDATA[+ Get$end$()]]></code>
 	</snippet>
-	<snippet name="Extends" shortcut="pumlclass">
+	<snippet name="Extends" shortcut="class">
 		<description>Extends</description>
 		<code><![CDATA[$class1$ --|> $class2$
 $end$]]></code>
 	</snippet>
-	<snippet name="Composition" shortcut="pumlclass">
+	<snippet name="Composition" shortcut="class">
 		<description>Composition</description>
 		<code><![CDATA[$class1$ *-- $class2$
 $end$]]></code>
 	</snippet>
-	<snippet name="Composition with cardinals" shortcut="pumlclass">
+	<snippet name="Composition with cardinals" shortcut="class">
 		<description>Composition with cardinals</description>
 		<code><![CDATA[$class1$ "1" *-- "$card$" $class2$
 $end$]]></code>
 	</snippet>
-	<snippet name="Aggregation" shortcut="pumlclass">
+	<snippet name="Aggregation" shortcut="class">
 		<description>Aggregation</description>
 		<code><![CDATA[$class1$ o-- $class2$
 $end$]]></code>
 	</snippet>
-	<snippet name="Aggregation with cardinals" shortcut="pumlclass">
+	<snippet name="Aggregation with cardinals" shortcut="class">
 		<description>Composition with cardinals</description>
 		<code><![CDATA[$class1$ "1" o-- "$card$" $class2$
 $end$]]></code>
 	</snippet>
-	<snippet name="Composition Methods" shortcut="pumlclass">
+	<snippet name="Composition Methods" shortcut="class">
 		<description>Composition Methods</description>
 		<code><![CDATA[+ Get$class$(index)
 + Get$class$Cnt()
 + Get$class$ByName()
 $end$]]></code>
 	</snippet>
-	<snippet name="Aggregation Methods" shortcut="pumlclass">
+	<snippet name="Aggregation Methods" shortcut="class">
 		<description>Composition Methods</description>
 		<code><![CDATA[+ Get$class$(index)
 + Get$class$Cnt()
@@ -653,6 +792,7 @@ detach
 		<code><![CDATA[:$end$}]]></code>
 	</snippet>
 
+	
 	<snippet name="New Frame" shortcut="pumlfra">
 		<description>New Frame</description>
 		<code><![CDATA[rectangle W1 [
@@ -800,65 +940,88 @@ $end$]]></code>
 }]]></code>
 	</snippet>
 	
-	<snippet name="New Gantt" shortcut="pumlgantt">
-		<description>Gantt</description>
-		<code><![CDATA[@startgantt
-allowmixing
-header
-<font color=red>Class definitions:</font>
-[Ref] Enter Diagram Title
-endheader
-center footer MyRPG Class Diagram
-title $title$
-
-	project starts the 2018/04/09
-	saturday are closed
-	sunday are closed
-	2019/05/01 is closed
-	2019/05/08 is closed
-	2019/08/01 to 2019/08/20 is closed
-	$end$
-@endgantt]]></code>
-	</snippet>
-	<snippet name="New Task" shortcut="pumlgantt">
+	<snippet name="New Task" shortcut="gantt">
+		<var name="name" optional="1" label="Task Name"></var>
+		<var name="pseudo" optional="1" label="Task pseudo"></var>
+		<var name="dur" optional="1" label="task duration in days"></var>
 		<description>Task</description>
 		<code><![CDATA[[$name$] as [$pseudo$] lasts $dur$ days
 $end$]]></code>
 	</snippet>
-	<snippet name="New Task with resource" shortcut="pumlgantt">
+	<snippet name="New Task with resource" shortcut="gantt">
+		<var name="name" optional="1" label="task name"></var>
+		<var name="pseudo" optional="1" label="Task pseudo"></var>
+		<var name="act" optional="1" label="Resource pseudo"></var>
+		<var name="pct" optional="1" label="Task charge on the resource"></var>
+		<var name="dur" optional="1" label="Task duration in days"></var>
 		<description>Task</description>
-		<code><![CDATA[[$name$] as [$pseudo$] on {$act$:0%} lasts $dur$ days
+		<code><![CDATA[[$name$] as [$pseudo$] on {$act$:$pct$%} lasts $dur$ days
 $end$]]></code>
 	</snippet>
-	<snippet name="Task Start in the same time" shortcut="pumlgantt">
+	<snippet name="Task Start in the same time" shortcut="gantt">
+		<var name="pseudo1" optional="1" label="First task pseudo"></var>
+		<var name="pseudo2" optional="1" label="Second task pseudo"></var>
 		<description>Gantt Link</description>
 		<code><![CDATA[[$pseudo1$] starts at [$pseudo2$]'s start
 $end$]]></code>
 	</snippet>
-	<snippet name="Task Start at the end of another task" shortcut="pumlgantt">
+	<snippet name="Task Start at the end of another task" shortcut="gantt">
+		<var name="pseudo1" optional="1" label="First task pseudo"></var>
+		<var name="pseudo2" optional="1" label="Second task pseudo"></var>
 		<description>Gantt Link</description>
 		<code><![CDATA[[$pseudo1$] starts at [$pseudo2$]'s end
 $end$]]></code>
 	</snippet>
-	<snippet name="Link 2 tasks" shortcut="pumlgantt">
+	<snippet name="Link 2 tasks" shortcut="gantt">
+		<var name="pseudo1" optional="1" label="First task pseudo"></var>
+		<var name="pseudo2" optional="1" label="Second task pseudo"></var>
 		<description>Gantt Link</description>
 		<code><![CDATA[[$pseudo1$] -> [$pseudo2$]
 $end$]]></code>
 	</snippet>
-	<snippet name="Set task color" shortcut="pumlgantt">
+	<snippet name="Set task color" shortcut="gantt">
 		<description>Gantt Set</description>
 		<code><![CDATA[[$pseudo$] is colored in GreenYellow/Green
 $end$]]></code>
 	</snippet>
-	<snippet name="Define phase" shortcut="pumlgantt">
+	<snippet name="Define phase" shortcut="gantt">
+		<var name="phase" optional="1" label="Phase Label"></var>
 		<description>Gantt Link</description>
-		<code><![CDATA[-- $pahse$ --
+		<code><![CDATA[-- $phase$ --
 $end$]]></code>
 	</snippet>
-	<snippet name="Jalon" shortcut="pumlgantt">
+	<snippet name="Jalon" shortcut="gantt">
+		<var name="jalon" optional="0" label="Jalon's label"></var>
+		<var name="pseudo" optional="0" label="Happens at Task PSEUDO's end"></var>
 		<description>Jalon</description>
 		<code><![CDATA[[$jalon$] happens at [$pseudo$]'s end
 $end$]]></code>
 	</snippet>
-	
+	<snippet name="Day of the week is closed" shortcut="gantt">
+		<var name="day" optional="1" label="Day of the week (eg sunday)"></var>
+		<description>A day in the week that is closed.</description>
+		<code><![CDATA[$day$ are closed
+$end$]]></code>
+	</snippet>
+	<snippet name="Date is closed" shortcut="gantt">
+		<var name="year" optional="1" label="year"></var>
+		<var name="month" optional="1" label="month"></var>
+		<var name="day" optional="1" label="day"></var>
+		<description>A specific day is closed.</description>
+		<code><![CDATA[$year$/$month$/$day$ is closed
+$end$]]></code>
+	</snippet>
+	<snippet name="Date range is closed" shortcut="gantt">
+		<var name="year1" optional="1" label="begin year"></var>
+		<var name="month1" optional="1" label="begin month"></var>
+		<var name="day1" optional="1" label="begin day"></var>
+		<var name="year2" optional="1" label="end year"></var>
+		<var name="month2" optional="1" label="end month"></var>
+		<var name="day2" optional="1" label="end day"></var>
+		<description>To specify vacations.</description>
+		<code><![CDATA[$year1$/$month1$/$day1$ to $year2$/$month2$/$day2$ is closed
+$end$]]></code>
+	</snippet>
+
+
 </G18Snippet>
